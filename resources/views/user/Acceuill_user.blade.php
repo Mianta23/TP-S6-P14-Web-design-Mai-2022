@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta name="description" content="A propos de AI- articles">
-  <title>L'intelligence artifficielle</title>
+  <meta name="description" content="Intelligence Artifficielle - Meilleure article">
+  <title>Intelligence Artifficielle - Meilleure article</title>
   <meta content="" name="keywords">
 
   <!-- Favicons -->
@@ -39,7 +39,7 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets2/assets/img/logo.png" alt=""> -->
-        <h1>AI</h1>
+        <h1>Intelligence Artificielle</h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -72,11 +72,9 @@
 
   <main id="main">
     <h1>Les avancées passionnantes de l'intelligence artificielle</h1>
-    <h2> L'apprentissage automatique : comment les machines apprennent-elles ?</h2>
-    <h3>Les types d'apprentissage automatique : supervisé, non supervisé et par renforcement</h3>
-    <h4> Les applications courantes de l'apprentissage automatique : classification d'images, reconnaissance de la parole, recommandations personnalisées, etc.</h4>
+    <h3> L'apprentissage automatique : comment les machines apprennent-elles ?</h3>
     <h5>L'avenir de l'intelligence artificielle </h5>
-    <h6>Les enjeux éthiques et sociaux de l'intelligence artificielle</h6>
+    <h5>Les enjeux éthiques et sociaux de l'intelligence artificielle</h5>
 
     <!-- ======= Post Grid Section ======= -->
     <section id="posts" class="posts">
@@ -114,7 +112,7 @@
         <div class="row justify-content-between">
           <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <div class="copyright">
-              © Copyright <strong><span>MiantaBlog</span></strong>. All Rights Reserved
+              © Copyright <strong><span>ETU1585</span></strong>2023
             </div>
 
             <div class="credits">
@@ -122,7 +120,7 @@
               <!-- You can delete the links only if you purchased the pro version. -->
               <!-- Licensing information: https://bootstrapmade.com/license/ -->
               <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-              Designed by <a href="https://bootstrapmade.com/">Bootstrap 5</a>
+              Designed by <a href="https://bootstrapmade.com/">Template</a>
             </div>
 
           </div>
