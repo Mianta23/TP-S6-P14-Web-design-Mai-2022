@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\article;
-use App\information;
 use Illuminate\Support\Facades\Cache;
-
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -40,14 +39,17 @@ class AdminController extends Controller
         return redirect("lister");     
      }
 
-     public function lister()
+     public function lister(Request $request)
      {
         $bloc = 5;
         // Récupérer le numéro de page et le nombre d'éléments par page
         $page = request()->query('page',1); // Valeur par défaut : 1
         $perPage = request()->query('perPage',$bloc); // Valeur par défaut : 10
-        $currentPage = 1;
-
+        $currentPage = $request->session()->get('numero1');
+        if($currentPage==null)
+        {
+            $currentPage = 1;
+        }
         $liste = article::orderBy("idarticle", "asc")->paginate($perPage, ['*'], 'page', $page);
 
         $lastPage = $liste->lastPage(); 
@@ -63,26 +65,14 @@ class AdminController extends Controller
         ]);
      }    
 
-     public function pagination()
+     public function pagination(Request $request)
      {
-      $bloc = 5;
-              // Récupérer le numéro de page et le nombre d'éléments par page
-      $page = request()->query('page',request('numero')); // Valeur par défaut : 1
-      $perPage = request()->query('perPage',$bloc); // Valeur par défaut : 10
-      $currentPage = request('numero');
-      
-      $liste = article::orderBy("idarticle", "asc")->paginate($perPage, ['*'], 'page', $page);
-
-      $lastPage = $liste->lastPage(); 
-  
-      $listeNumeroPage = range(1, $lastPage);
-      
-      return view("admin/liste",[
-            'liste' => $liste,
-            'currentPage' => $currentPage,
-            'lastPage'  =>  $lastPage,
-            'listeNumeroPage' => $listeNumeroPage,
-        ]);
+        $url = request('numero');
+        $tab = array();
+        $tab = explode(".", $url);
+        $idarticle = $tab[count($tab)-3];
+        $request->session()->put('numero1',$idarticle);
+        return redirect("lister");
      }
 
 
@@ -129,18 +119,6 @@ class AdminController extends Controller
            $query .= (count($bindings) > 0 ? " AND" : " WHERE") . " titre like ?";
            $bindings[] = "%" . $request->input('titre') . "%";
        }
-
-       if (null!==$request->input('date1')) {
-           $query .= (count($bindings) > 0 ? " AND" : " WHERE") . "  datepublication >= ?";
-           $bindings[] = $request->input('date1') ;
-       }
-       
-       if (null!==$request->input('date2')) {
-           $query .= (count($bindings) > 0 ? " AND" : " WHERE") . " datepublication <= ?";
-           $bindings[] =  $request->input('date2') ;
-       }
-       
-       
        $results = \DB::select($query, $bindings);
        $lastPage = 5; 
        $listeNumeroPage = range(1, $lastPage);
@@ -154,17 +132,9 @@ class AdminController extends Controller
    }
 
 
-   public function info()
+   public function log_out()
    {
-       return view('admin/information');
+          return redirect("/");
    }
 
-   public function insererInfo(Request $request)
-   {
-       $data = $request->all();
-       information::create($data);
-       return redirect("info");
-   }
-   
-   
 }

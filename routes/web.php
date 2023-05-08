@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//admin
+
 Route::get('/',\App\Http\Controllers\AdminController::class . '@index');
 Route::post('/log_admin',\App\Http\Controllers\AdminController::class . '@log_admin');
 Route::post('/insererArticle',\App\Http\Controllers\AdminController::class . '@insererArticle');
@@ -23,12 +23,13 @@ Route::get('/Versupdate/{id}',\App\Http\Controllers\AdminController::class . '@V
 Route::post('/update',\App\Http\Controllers\AdminController::class . '@updateAll');
 Route::get('/delete/{idarticle}',\App\Http\Controllers\AdminController::class . '@delete');
 Route::post('/recherche',\App\Http\Controllers\AdminController::class . '@recherche');
-Route::get('/info',\App\Http\Controllers\AdminController::class . '@info');
-Route::post('/insererInfo',\App\Http\Controllers\AdminController::class . '@insererInfo');
+Route::get('/pagination/{numero}',\App\Http\Controllers\AdminController::class . '@pagination');
+Route::get('/log_out',\App\Http\Controllers\AdminController::class . '@log_out');
 
 
-//user
-Route::get('/vers_user',\App\Http\Controllers\UserController::class . '@index');
+
+Route::get('/front',\App\Http\Controllers\UserController::class . '@index');
 Route::post('/log_user',\App\Http\Controllers\UserController::class . '@log_user');
-Route::get('/article/{id}',\App\Http\Controllers\UserController::class . '@fiche');
 Route::get('/liste',\App\Http\Controllers\UserController::class . '@liste');
+Route::get('/article/{id}',\App\Http\Controllers\UserController::class . '@fiche');
+Route::post('/searchFront',\App\Http\Controllers\UserController::class . '@searchFront');
