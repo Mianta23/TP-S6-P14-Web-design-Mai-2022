@@ -30,5 +30,10 @@ class AppServiceProvider extends ServiceProvider
        if($this->app->environment('production')){
         URL::forceScheme('https');
        }
+
+       if(request()->server('HTTP_ACCEPT_ENCODING') && strpos(request()->server('HTTP_ACCEPT_ENCODING'),
+       'gzip') !==false) {
+         ob_start("ob_gzhandler");
+       }
     }
 }

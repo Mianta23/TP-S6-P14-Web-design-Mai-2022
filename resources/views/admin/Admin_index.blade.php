@@ -16,6 +16,7 @@
             <div class="image-holder" style="background: url(&quot;<?php echo asset('assets/Login/img/RH.jpg');?>&quot;);"></div>
             <form action="{{ url('/log_admin') }}" method="post" autocomplete="off">
             {{ csrf_field() }}
+            <h2>Bienvenue connectez-vous</h2>
                 <div class="form-group mb-3"><input class="form-control" type="text" name="mail" value="mianta" required placeholder="Email"></div>
                 <div class="form-group mb-3"><input class="form-control" type="password" id="password" name="mdp" value="mianta" placeholder="Mot de passe"></div>
 

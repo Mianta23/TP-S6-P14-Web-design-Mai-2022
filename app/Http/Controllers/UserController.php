@@ -22,17 +22,20 @@ class UserController extends Controller
         $tab = array();
         $tab = explode("-", $url);
         $id = $tab[count($tab)-2];
-        $fiche =  article::find($id);
-        return view('user/Fiche_art',[
+        $fiche =  Cache::remember('fiche' . $id, 60, function () use ($id) {
+                return article::find($id);
+        });
+        $response = response()->view('user/Fiche_art',[
             'fiche' => $fiche,
         ]);
-
+        $response-> header('Cache-Control', 'max-age=3600,public');
+        return $response;
     }
 
     public function searchFront(Request $request)
     {
         $keyword = $request->input('motcle');
-    
+
         $articles = DB::table('articles')
                     ->where('titre', 'LIKE', '%'.$keyword.'%')
                     ->orWhere('contenu', 'LIKE', '%'.$keyword.'%')
@@ -42,7 +45,7 @@ class UserController extends Controller
 
          return view('user/result',[
             'articles' => $articles,
-         ]);           
+         ]);
     }
 }
 
